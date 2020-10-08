@@ -1,0 +1,8 @@
+{
+    "diffEditor.codeLens": true,
+    // タブ 1 つに相当するスペースの数。
+    "editor.tabSize": 4,
+
+// Tab キーを押すとスペースが挿入されます。
+    "editor.insertSpaces": true,
+}
