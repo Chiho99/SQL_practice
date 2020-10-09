@@ -9,7 +9,7 @@ SELECT 受注日, 受注ID, 文字数,
         WHEN '1' THEN 'ブロック体'
         WHEN '2' THEN '筆記体'
         WHEN '3' THEN '草書体' END AS 書体名,
-    CASE COALESCE(書体コード, '1')  /* 最初に登場するNULLでない値を返す、NULLなら１(ブロック体）とする*/
+CASE COALESCE(書体コード, '1')  /* 最初に登場するNULLでない値を返す、NULLなら１(ブロック体）とする*/
         WHEN '1' THEN 100
         WHEN '2' THEN 150
         WHEN '3' THEN 200
