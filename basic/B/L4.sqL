@@ -1,0 +1,46 @@
+-- 34
+SELECT 商品コード, 単価, (単価*0.95) AS キャンペーン価格
+FROM 商品
+WHERE 商品区分 = '9'
+ORDER BY 1;
+
+-- 35
+UPDATE 注文
+  SET クーポン割引料 = クーポン割引料 + 300
+WHERE 注文日 BETWEEN '2018-03-12' AND '2018-03-14'
+  AND 数量 >= 2
+  AND クーポン割引料 IS NOT NULL;
+
+-- 36
+UPDATE 注文
+   SET 数量 = 数量 - 1
+WHERE 注文番号 = 201802250126
+  AND 商品コード = 'W0156';
+
+-- 37
+SELECT 注文番号 || '-' || CAST(注文枝番 AS VARCHAR)
+FROM 注文
+WHERE 注文番号 BETWEEN '201710010001' AND '201710319999';
+
+-- 38
+SELECT DISTINCT 商品区分 AS 区分,
+CASE 商品区分 WHEN '1' THEN '衣類'
+             WHEN '2' THEN '靴'
+             WHEN '3' THEN '雑貨'
+             WHEN '9' THEN '未分類' 
+END AS 区分名;
+FROM 商品
+
+-- 39
+SELECT 商品コード, 商品名, 単価, 
+  CASE WHEN 単価 < 3000 THEN 'S'
+       WHEN 単価 >= 3000 AND 単価 < 10000 THEN 'M'
+       WHEN 単価 >= 10000 THEN 'L'
+  END AS 販売価格ランク, 商品区分 || ':' ||
+  CASE 商品区分 WHEN '1' THEN '衣類'
+             WHEN '2' THEN '靴'
+             WHEN '3' THEN '雑貨'
+             WHEN '9' THEN '未分類' 
+  END AS 商品区分
+FROM 商品
+ORDER BY 単価 ASC, 商品コード ASC
