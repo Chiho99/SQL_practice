@@ -16,7 +16,7 @@ WHERE 口座番号 < '1000000';
 -- 12
 SELECT *
 FROM 口座
-WHERE 更新日　< '2018-01-01'
+WHERE 更新日 < '2018-01-01'
 
 -- 13
 SELECT *
@@ -26,8 +26,8 @@ WHERE 残高 >= 1000000;
 -- 14
 SELECT
 CASE 種別 WHEN '1' THEN '普通'
-        　WHEN '2' THEN '当選'
-        　WHEN '3' THEN '別段'
+         WHEN '2' THEN '当選'
+         WHEN '3' THEN '別段'
 END AS 普通, 当選, 別段
 FROM 口座
 WHERE 種別 <> '普通';
