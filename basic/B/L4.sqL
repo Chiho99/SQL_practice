@@ -29,7 +29,7 @@ CASE 商品区分 WHEN '1' THEN '衣類'
              WHEN '3' THEN '雑貨'
              WHEN '9' THEN '未分類' 
 END AS 区分名;
-FROM 商品
+FROM 商品;
 
 -- 39
 SELECT 商品コード, 商品名, 単価, 
@@ -44,3 +44,33 @@ SELECT 商品コード, 商品名, 単価,
   END AS 商品区分
 FROM 商品
 ORDER BY 単価 ASC, 商品コード ASC
+
+-- 40
+SELECT 商品名, LENGTH(商品名) AS 文字数
+FROM 商品名
+WHERE LENGTH(商品名) > 10
+ORDER BY LENGTH(商品名);
+
+-- 41
+SELECT 注文日, SUBSTRING(注文番号, 9, 4)
+FROM 注文;
+
+-- 42
+UPDATE 商品
+   SET 商品コード = 'E' || SUBSTRING(商品コード, 2,4)
+WHERE SUBSTRING(商品コード, 1, 1) = 'M';
+
+-- 43
+SELECT SUBSTRING(注文番号, 9, 4)
+FROM 注文
+WHERE SUBSTRING(注文番号, 9, 4) BETWEEN 1000 AND 2000;
+
+-- 44
+UPDATE 廃番商品
+   SET 廃番日 = CUURENT_DATE
+WHERE 商品コード = 'S1990';
+
+-- 45
+SELECT TRUNK((単価*0.7), 0) AS 値下げした単価, 商品コード, 商品名, 単価
+FROM 商品
+WHERE 単価 >= 10000
